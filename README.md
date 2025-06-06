@@ -54,7 +54,7 @@ Visit http://localhost/rent-management-system in your browser
 🧑‍💻 Roles & Access
 Role	Access Level
 Admin	Full control (properties, tenants, billing)
-Manager	Manage assigned properties and tenants
+Caretaker	Manage assigned properties and tenants
 Tenant	View rent info, make maintenance requests
 
 
