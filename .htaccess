@@ -1,0 +1,31 @@
+# .htaccess for Rent Management System
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Set default index file
+DirectoryIndex index.php index.html
+
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect www to non-www (optional)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Pretty URLs: route all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|json|md|git|ini|log|sh|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
