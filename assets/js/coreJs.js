@@ -67,6 +67,8 @@ navLinks.forEach(navLink => {
             root = document.getElementById("mainContent");
             if (data.apartments) {
                 let tableHTML = `
+                <h2 class="text-center">Apartments</h2>
+                <hr>
                     <table class="table table-bordered table-striped table-hover">
                       <thead class="table-dark">
                         <tr>
@@ -97,6 +99,8 @@ navLinks.forEach(navLink => {
                 root.innerHTML = tableHTML;
             } else if (data.houses) {
                 let tableHTML = `
+                <h2 class="text-center">Houses</h2>
+                        <hr>
                     <table class="table table-bordered table-striped table-hover">
                       <thead class="table-dark">
                         <tr>
@@ -118,7 +122,7 @@ navLinks.forEach(navLink => {
                         <td>${house.apartment_name}</td>
                         <td>${house.address}</td>
                         <td>${house.rent_amount}</td>
-                        <td>${house.status}</td>
+                        <td>${house.house_status}</td>
                       </tr>
                     `;
                 });
@@ -129,6 +133,8 @@ navLinks.forEach(navLink => {
                 root.innerHTML = tableHTML;
             } else if (data.tenants) {
                 let tableHTML = `
+                <h2 class="text-center">Tenants</h2>
+                        <hr>
                     <table class="table table-bordered table-striped table-hover">
                       <thead class="table-dark">
                         <tr>
@@ -163,6 +169,8 @@ navLinks.forEach(navLink => {
                 root.innerHTML = tableHTML;
             } else if (data.caretakers) {
                 let tableHTML = `
+                <h2 class="text-center">Caretakers</h2>
+                        <hr>
                     <table class="table table-bordered table-striped table-hover">
                       <thead class="table-dark">
                         <tr>
@@ -182,7 +190,7 @@ navLinks.forEach(navLink => {
                         <td>${caretaker.name}</td>
                         <td>${caretaker.email}</td>
                         <td>${caretaker.phone}</td>
-                        <td>${caretaker.status}</td>
+                        <td>${caretaker.user_status}</td>
                       </tr>
                     `;
                 });
