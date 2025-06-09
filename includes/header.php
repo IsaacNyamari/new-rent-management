@@ -13,4 +13,4 @@ require "path.php";
     <link href="<?php echo loadAsset('assets/css/fontawesome/css/solid.min.css'); ?>" rel="stylesheet">
 </head>
 
-<body class="bg-light"></body>
+<body class="bg-light">
