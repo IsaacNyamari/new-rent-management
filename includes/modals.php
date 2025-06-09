@@ -1,3 +1,71 @@
+<?php
+class Dbh
+{
+    protected $host = "localhost";
+    protected $username = "root";
+    protected $password = "";
+    protected $database = "p_m_s";
+
+    protected function Connect()
+    {
+        $conn = new mysqli(
+            $this->host,
+            $this->username,
+            $this->password,
+            $this->database
+        );
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        return $conn;
+    }
+}
+class OptionFetcher extends Dbh
+{
+    public function getApartments()
+    {
+        $conn = $this->Connect();
+        $result = $conn->query("SELECT id, apartment_name FROM apartments");
+        $options = '';
+        while ($row = $result->fetch_assoc()) {
+            $options .= '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['apartment_name']) . '</option>';
+        }
+        $conn->close();
+        return $options;
+    }
+
+    public function getHouses()
+    {
+        $conn = $this->Connect();
+        $result = $conn->query("SELECT house_id, house_no FROM houses");
+        $options = '';
+        while ($row = $result->fetch_assoc()) {
+            $options .= '<option value="' . htmlspecialchars($row['house_id']) . '">' . htmlspecialchars($row['house_no']) . '</option>';
+        }
+        $conn->close();
+        return $options;
+    }
+
+    public function getCaretakers()
+    {
+        $conn = $this->Connect();
+        $result = $conn->query("SELECT id, name FROM users WHERE role = 'caretaker'");
+        $options = '';
+        while ($row = $result->fetch_assoc()) {
+            $options .= '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['name']) . '</option>';
+        }
+        $conn->close();
+        return $options;
+    }
+}
+
+$fetcher = new OptionFetcher();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
 <!-- addWaterBillModal -->
 <div class="modal fade" id="addWaterBillModal" tabindex="-1" aria-labelledby="addWaterBillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -11,8 +79,10 @@
                     <div class="mb-3">
                         <label for="waterBillApartment" class="form-label">Apartment</label>
                         <select class="form-select" id="waterBillApartment" required>
-                            <option value="">Select Apartment</option>
-                            <!-- Apartments will be populated here -->
+
+                            <?php
+                            echo $fetcher->getApartments();
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -62,8 +132,8 @@
                     <div class="mb-3">
                         <label for="caretakerApartment" class="form-label">Assigned Apartment</label>
                         <select class="form-select" id="caretakerApartment" required>
-                            <option value="">Select Apartment</option>
-                            <!-- Apartments will be populated here -->
+
+                            <?php echo $fetcher->getApartments(); ?>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -111,8 +181,8 @@
                         <div class="col-md-6">
                             <label for="tenantHouse" class="form-label">Assigned House</label>
                             <select class="form-select" id="tenantHouse" required>
-                                <option value="">Select House</option>
-                                <!-- Houses will be populated here -->
+
+                                <?php echo $fetcher->getHouses(); ?>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -149,8 +219,8 @@
                         <div class="col-md-6">
                             <label for="houseApartment" class="form-label">Apartment</label>
                             <select class="form-select" id="houseApartment" required>
-                                <option value="">Select Apartment</option>
-                                <!-- Apartments will be populated here -->
+
+                                <?php echo $fetcher->getApartments(); ?>
                             </select>
                         </div>
                     </div>
@@ -210,8 +280,8 @@
                         <div class="col-md-6">
                             <label for="apartmentCaretaker" class="form-label">Caretaker</label>
                             <select class="form-select" id="apartmentCaretaker">
-                                <option value="">Select Caretaker</option>
-                                <!-- Caretakers will be populated here -->
+
+                                <?php echo $fetcher->getCaretakers(); ?>
                             </select>
                         </div>
                     </div>
@@ -224,3 +294,14 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+1 Bedroom
+2 Bedroom
+3 Bedroom
+Studio
+Bedsitter
