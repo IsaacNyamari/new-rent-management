@@ -55,24 +55,19 @@ let navLinks = document.querySelectorAll(".nav-item")
 navLinks.forEach(navLink => {
     navLink.addEventListener("click", (e) => {
         e.preventDefault()
+        console.log(originalLocaton + endPoint + target);
+        
         q = navLink.children[0].getAttribute("href");
-        fetch(originalLocaton + endPoint + target, {
+      fetch(originalLocaton + endPoint + target, {
             method: method,
             body: JSON.stringify({
                 query: q
             })
-        }).then(res => res.json()).then(data => {
+        }).then(res => res.text()).then(data => {
            root = document.getElementById("mainContent");
-          let dataResult = root.innerHTML = data.content
+        //   let dataResult = root.innerHTML = data.content
+            console.log(data)
 
-          switch (dataResult) {
-            case "value":
-                
-                break;
-          
-            default:
-                break;
-          }
         })
     })
 })
