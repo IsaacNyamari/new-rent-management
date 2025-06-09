@@ -208,3 +208,131 @@ navLinks.forEach(navLink => {
         });
     });
 });
+
+// add data to the database
+// Utility function to send form data to the endpoint
+function submitFormData(formData, action, callback) {
+  formData.append("action", action);
+  fetch(SUBMIT_ENDPOINT, {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(callback)
+  .catch(err => {
+    console.error("Submission error:", err);
+    alert("An error occurred. Please try again.");
+  });
+}
+
+// Water Bill Form
+const waterBillForm = document.getElementById("waterBillForm");
+if (waterBillForm) {
+  waterBillForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("apartment_id", document.getElementById("waterBillApartment").value);
+    formData.append("amount", document.getElementById("waterBillAmount").value);
+    formData.append("billing_period", document.getElementById("waterBillPeriod").value);
+    formData.append("due_date", document.getElementById("waterBillDueDate").value);
+    submitFormData(formData, "add_water_bill", function(response) {
+      if (response.status === "success") {
+        alert("Water bill added successfully!");
+        waterBillForm.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("addWaterBillModal")).hide();
+      } else {
+        alert(response.message || "Failed to add water bill.");
+      }
+    });
+  });
+}
+
+// Caretaker Form
+const caretakerForm = document.getElementById("caretakerForm");
+if (caretakerForm) {
+  caretakerForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", document.getElementById("caretakerName").value);
+    formData.append("phone", document.getElementById("caretakerPhone").value);
+    formData.append("id_number", document.getElementById("caretakerIdNumber").value);
+    formData.append("apartment_id", document.getElementById("caretakerApartment").value);
+    submitFormData(formData, "add_caretaker", function(response) {
+      if (response.status === "success") {
+        alert("Caretaker added successfully!");
+        caretakerForm.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("addCaretakerModal")).hide();
+      } else {
+        alert(response.message || "Failed to add caretaker.");
+      }
+    });
+  });
+}
+
+// Tenant Form
+const tenantForm = document.getElementById("tenantForm");
+if (tenantForm) {
+  tenantForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", document.getElementById("tenantName").value);
+    formData.append("phone", document.getElementById("tenantPhone").value);
+    formData.append("email", document.getElementById("tenantEmail").value);
+    formData.append("id_number", document.getElementById("tenantIdNumber").value);
+    formData.append("house_id", document.getElementById("tenantHouse").value);
+    formData.append("move_in_date", document.getElementById("moveInDate").value);
+    submitFormData(formData, "add_tenant", function(response) {
+      if (response.status === "success") {
+        alert("Tenant added successfully!");
+        tenantForm.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("addTenantModal")).hide();
+      } else {
+        alert(response.message || "Failed to add tenant.");
+      }
+    });
+  });
+}
+
+// House Form
+const houseForm = document.getElementById("houseForm");
+if (houseForm) {
+  houseForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("house_no", document.getElementById("houseNumber").value);
+    formData.append("apartment_id", document.getElementById("houseApartment").value);
+    formData.append("house_type", document.getElementById("houseType").value);
+    formData.append("rent_amount", document.getElementById("monthlyRent").value);
+    submitFormData(formData, "add_house", function(response) {
+      if (response.status === "success") {
+        alert("House added successfully!");
+        houseForm.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("addHouseModal")).hide();
+      } else {
+        alert(response.message || "Failed to add house.");
+      }
+    });
+  });
+}
+
+// Apartment Form
+const apartmentForm = document.getElementById("apartmentForm");
+if (apartmentForm) {
+  apartmentForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("apartment_name", document.getElementById("apartmentName").value);
+    formData.append("location", document.getElementById("apartmentLocation").value);
+    formData.append("total_units", document.getElementById("totalUnits").value);
+    formData.append("caretaker_id", document.getElementById("apartmentCaretaker").value);
+    submitFormData(formData, "add_apartment", function(response) {
+      if (response.status === "success") {
+        alert("Apartment added successfully!");
+        apartmentForm.reset();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("addApartmentModal")).hide();
+      } else {
+        alert(response.message || "Failed to add apartment.");
+      }
+    });
+  });
+}
