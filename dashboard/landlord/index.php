@@ -31,11 +31,44 @@ session_start();
             <div class="heading">
                 <h3>Welcome, Admin: <?php echo $_SESSION["user_name"] ?></h3>
                 <hr>
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn-hover-animate btn btn-primary btn-lg w-100 py-3" data-bs-toggle="modal" data-bs-target="#addApartmentModal">
+                                <i class="fas fa-building me-2"></i> Add Apartment
+                            </button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn-hover-animate btn btn-success btn-lg w-100 py-3" data-bs-toggle="modal" data-bs-target="#addHouseModal">
+                                <i class="fas fa-home me-2"></i> Add House
+                            </button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn-hover-animate btn btn-info btn-lg w-100 py-3 text-white" data-bs-toggle="modal" data-bs-target="#addTenantModal">
+                                <i class="fas fa-user-plus me-2"></i> Add Tenant
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn-hover-animate btn btn-warning btn-lg w-100 py-3" data-bs-toggle="modal" data-bs-target="#addCaretakerModal">
+                                <i class="fas fa-user-shield me-2"></i> Add Caretaker
+                            </button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button type="button" class="btn-hover-animate btn btn-blue btn-lg w-100 py-3" data-bs-toggle="modal" data-bs-target="#addWaterBillModal" style="background-color: #0dcaf0;">
+                                <i class="fas fa-tint me-2"></i> Add Water Bill
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <hr>
             </div>
 
             <!-- main content-area -->
             <div class="main-area" id="mainContent" style="overflow-x: hidden;">
-             
+
             </div>
             <!-- details section -->
             <div class="container-fluid">
@@ -152,5 +185,6 @@ session_start();
     </div>
 </div>
 <?php
+require "../../includes/modals.php";
 require "../../includes/footer.php";
 ?>

@@ -11,6 +11,16 @@ require "path.php";
     <!-- Font Awesome -->
     <link href="<?php echo loadAsset('assets/css/fontawesome/css/fontawesome.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo loadAsset('assets/css/fontawesome/css/solid.min.css'); ?>" rel="stylesheet">
+<style>
+    .btn-hover-animate {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+    }
+    .btn-hover-animate:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+</style>
 </head>
 
 <body class="bg-light">
