@@ -294,14 +294,3 @@ ini_set('display_errors', 1);
         </div>
     </div>
 </div>
-
-
-
-
-
-
-1 Bedroom
-2 Bedroom
-3 Bedroom
-Studio
-Bedsitter
