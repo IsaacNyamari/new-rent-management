@@ -251,10 +251,8 @@ ini_set('display_errors', 1);
     </div>
 </div>
 
-<!-- add house modal -->
-
-<div class="modal fade" id="addApartmentModal" tabindex="-1" aria-labelledby="addApartmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<!-- add apartment modal -->
+<div class="modal fade" id="addApartmentModal" tabindex="-1" aria-labelledby="addApartmentModalLabel" aria-hidden="true">    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
                 <h5 class="modal-title" id="addApartmentModalLabel"><i class="fa fa-plus-circle"></i> Add New Apartment</h5>
@@ -269,7 +267,7 @@ ini_set('display_errors', 1);
                         </div>
                         <div class="col-md-6">
                             <label for="apartmentLocation" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="apartmentLocation" required>
+                            <input type="text" class="form-control" id="apartmentLocation" required autocomplete="off">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -280,7 +278,6 @@ ini_set('display_errors', 1);
                         <div class="col-md-6">
                             <label for="apartmentCaretaker" class="form-label">Caretaker</label>
                             <select class="form-select" id="apartmentCaretaker">
-
                                 <?php echo $fetcher->getCaretakers(); ?>
                             </select>
                         </div>
