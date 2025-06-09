@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Dbh
 {
     protected $host = "localhost";
@@ -23,7 +23,6 @@ class Dbh
         return $conn;
     }
 }
-
 class Apartments extends Dbh
 {
     // View methods
@@ -161,7 +160,7 @@ class Apartments extends Dbh
     public function addCaretaker($name, $email, $phone, $password, $assigned_apartment_id, $landlord_id)
     {
         $conn = $this->Connect();
-
+        $landlord_id = $_SESSION["user_id"];
         // First add to users table
         $role = 'caretaker';
         $user_status = 'active';
