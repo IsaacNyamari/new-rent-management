@@ -15,5 +15,5 @@ function loadAsset($assetPath) {
     // If your assets are in a subdirectory, add it here
     $assetsBase = ''; // e.g., 'myapp/public'
     
-    return $baseUrl . '/' . $assetsBase . '/' . $cleanPath;
+    return $baseUrl . '/' . $assetsBase . '' . $cleanPath;
 }  return $fullPath;

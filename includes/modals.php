@@ -78,8 +78,7 @@ ini_set('display_errors', 1);
                 <form id="waterBillForm">
                     <div class="mb-3">
                         <label for="waterBillApartment" class="form-label">Apartment</label>
-                        <select class="form-select" id="waterBillApartment" required>
-
+                        <select class="form-select" name="waterBillApartment" required>
                             <?php
                             echo $fetcher->getApartments();
                             ?>
@@ -87,15 +86,15 @@ ini_set('display_errors', 1);
                     </div>
                     <div class="mb-3">
                         <label for="waterBillAmount" class="form-label">Amount (Ksh)</label>
-                        <input type="number" class="form-control" id="waterBillAmount" required>
+                        <input type="number" class="form-control" name="waterBillAmount" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3"></div>
                         <label for="waterBillPeriod" class="form-label">Billing Period</label>
-                        <input type="month" class="form-control" id="waterBillPeriod" required>
+                        <input type="month" class="form-control" name="waterBillPeriod" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3"></div>
                         <label for="waterBillDueDate" class="form-label">Due Date</label>
-                        <input type="date" class="form-control" id="waterBillDueDate" required>
+                        <input type="date" class="form-control" name="waterBillDueDate" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -119,20 +118,19 @@ ini_set('display_errors', 1);
                 <form id="caretakerForm">
                     <div class="mb-3">
                         <label for="caretakerName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="caretakerName" required>
+                        <input type="text" class="form-control" name="caretakerName" required>
                     </div>
                     <div class="mb-3">
                         <label for="caretakerPhone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="caretakerPhone" required>
+                        <input type="tel" class="form-control" name="caretakerPhone" required>
                     </div>
                     <div class="mb-3">
                         <label for="caretakerIdNumber" class="form-label">ID Number</label>
-                        <input type="text" class="form-control" id="caretakerIdNumber" required>
+                        <input type="text" class="form-control" name="caretakerIdNumber" required>
                     </div>
                     <div class="mb-3">
                         <label for="caretakerApartment" class="form-label">Assigned Apartment</label>
-                        <select class="form-select" id="caretakerApartment" required>
-
+                        <select class="form-select" name="caretakerApartment" required>
                             <?php echo $fetcher->getApartments(); ?>
                         </select>
                     </div>
@@ -160,34 +158,33 @@ ini_set('display_errors', 1);
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="tenantName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="tenantName" required>
+                            <input type="text" class="form-control" name="tenantName" required>
                         </div>
                         <div class="col-md-6">
                             <label for="tenantPhone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="tenantPhone" required>
+                            <input type="tel" class="form-control" name="tenantPhone" required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="tenantEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="tenantEmail">
+                            <input type="email" class="form-control" name="tenantEmail">
                         </div>
                         <div class="col-md-6">
                             <label for="tenantIdNumber" class="form-label">ID Number</label>
-                            <input type="text" class="form-control" id="tenantIdNumber" required>
+                            <input type="text" class="form-control" name="tenantIdNumber" required>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6"></div>
                             <label for="tenantHouse" class="form-label">Assigned House</label>
-                            <select class="form-select" id="tenantHouse" required>
-
+                            <select class="form-select" name="tenantHouse" required>
                                 <?php echo $fetcher->getHouses(); ?>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="moveInDate" class="form-label">Move-in Date</label>
-                            <input type="date" class="form-control" id="moveInDate" required>
+                            <input type="date" class="form-control" name="moveInDate" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -214,12 +211,11 @@ ini_set('display_errors', 1);
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="houseNumber" class="form-label">House Number</label>
-                            <input type="text" class="form-control" id="houseNumber" required>
+                            <input type="text" class="form-control" name="houseNumber" required>
                         </div>
                         <div class="col-md-6">
                             <label for="houseApartment" class="form-label">Apartment</label>
-                            <select class="form-select" id="houseApartment" required>
-
+                            <select class="form-select" name="houseApartment" required>
                                 <?php echo $fetcher->getApartments(); ?>
                             </select>
                         </div>
@@ -227,7 +223,7 @@ ini_set('display_errors', 1);
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="houseType" class="form-label">House Type</label>
-                            <select class="form-select" id="houseType" required>
+                            <select class="form-select" name="houseType" required>
                                 <option value="">Select Type</option>
                                 <option value="1 Bedroom">1 Bedroom</option>
                                 <option value="2 Bedroom">2 Bedroom</option>
@@ -238,7 +234,7 @@ ini_set('display_errors', 1);
                         </div>
                         <div class="col-md-6">
                             <label for="monthlyRent" class="form-label">Monthly Rent (Ksh)</label>
-                            <input type="number" class="form-control" id="monthlyRent" required>
+                            <input type="number" class="form-control" name="monthlyRent" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -263,26 +259,28 @@ ini_set('display_errors', 1);
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="apartmentName" class="form-label">Apartment Name</label>
-                            <input type="text" class="form-control" id="apartmentName" required>
+                            <input type="text" class="form-control" name="apartmentName" required>
                         </div>
                         <div class="col-md-6">
                             <label for="apartmentLocation" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="apartmentLocation" required autocomplete="off">
+                            <input type="text" class="form-control" name="apartmentLocation" required autocomplete="off">
                         </div>
+                            <input type="hidden" class="form-control" name="ladnlordId" value="<?php echo $_SESSION["user_id"]?>" required autocomplete="off">
+                            <input type="hidden" class="form-control" name="status" value="<?php echo trim("vacant") ?>" required autocomplete="off">
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="totalUnits" class="form-label">Total Units</label>
-                            <input type="number" class="form-control" id="totalUnits" required>
+                            <input type="number" class="form-control" name="totalUnits" required>
                         </div>
                         <div class="col-md-6">
                             <label for="apartmentCaretaker" class="form-label">Caretaker</label>
-                            <select class="form-select" id="apartmentCaretaker">
+                            <select class="form-select" name="apartmentCaretaker">
                                 <?php echo $fetcher->getCaretakers(); ?>
                             </select>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer"></div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Save Apartment</button>
                     </div>

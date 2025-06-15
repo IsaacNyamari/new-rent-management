@@ -1,8 +1,8 @@
 "USE STRICT"
 
 function getBrowserRootUrl() {
-    const location = window.location;
-    return location.protocol + '//' + location.host + '/';
+  const location = window.location;
+  return location.protocol + '//' + location.host + '/';
 }
 let q, endPoint = "/api/", target = "requests/", method = "POST";
 let originalLocaton = window.location.origin
@@ -14,59 +14,59 @@ const loginForm = document.getElementById("login")
 const registerForm = document.getElementById("register")
 
 loginForm ? loginForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-    xhr.open("POST", SUBMIT_ENDPOINT);
-    const formData = new FormData(loginForm)
-    formData.append("action", "login")
-    xhr.onload = function () {
-        let response = JSON.parse(this.response)
-        if (response.status === "success") {
-            window.location.href = response.redirectUrl;
-        }
+  e.preventDefault()
+  xhr.open("POST", SUBMIT_ENDPOINT);
+  const formData = new FormData(loginForm)
+  formData.append("action", "login")
+  xhr.onload = function () {
+    let response = JSON.parse(this.response)
+    if (response.status === "success") {
+      window.location.href = response.redirectUrl;
     }
-    xhr.send(formData)
+  }
+  xhr.send(formData)
 }) : "";
 
 registerForm ? registerForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-    xhr.open("POST", SUBMIT_ENDPOINT);
-    const formData = new FormData(registerForm)
-    formData.append("action", "register")
-    xhr.onload = function () {
-        let response = JSON.parse(this.response)
-        if (response.status == "success") {
-            window.location.href = response.redirectUrl;
-        }
+  e.preventDefault()
+  xhr.open("POST", SUBMIT_ENDPOINT);
+  const formData = new FormData(registerForm)
+  formData.append("action", "register")
+  xhr.onload = function () {
+    let response = JSON.parse(this.response)
+    if (response.status == "success") {
+      window.location.href = response.redirectUrl;
     }
-    xhr.send(formData)
+  }
+  xhr.send(formData)
 }) : "";
 if (window.location.href.includes("landlord")) {
-    root = document.getElementById("mainContent");
-    fetch(originalLocaton + "/dashboard/landlord/main-area-top.php", {
-        method: "GET"
-    }).then(res => res.text()).then(data => {
-        root.innerHTML = data
-    }).catch(error => {
-        console.log(error);
+  root = document.getElementById("mainContent");
+  fetch(originalLocaton + "/dashboard/landlord/main-area-top.php", {
+    method: "GET"
+  }).then(res => res.text()).then(data => {
+    root.innerHTML = data
+  }).catch(error => {
+    console.log(error);
 
-    })
+  })
 }
 let navLinks = document.querySelectorAll(".nav-item")
 navLinks.forEach(navLink => {
-    navLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        q = navLink.children[0].getAttribute("href");
-        fetch(originalLocaton + endPoint + target, {
-            method: method,
-            body: JSON.stringify({
-                query: q
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            root = document.getElementById("mainContent");
-            if (data.apartments) {
-                let tableHTML = `
+  navLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    q = navLink.children[0].getAttribute("href");
+    fetch(originalLocaton + endPoint + target, {
+      method: method,
+      body: JSON.stringify({
+        query: q
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        root = document.getElementById("mainContent");
+        if (data.apartments) {
+          let tableHTML = `
                 <h2 class="text-center">Apartments</h2>
                 <hr>
                     <table class="table table-bordered table-striped table-hover">
@@ -81,8 +81,8 @@ navLinks.forEach(navLink => {
                       </thead>
                       <tbody>
                   `;
-                data.apartments.forEach(apartment => {
-                    tableHTML += `
+          data.apartments.forEach(apartment => {
+            tableHTML += `
                       <tr>
                         <td>${apartment.id}</td>
                         <td>${apartment.apartment_name}</td>
@@ -91,14 +91,14 @@ navLinks.forEach(navLink => {
                         <td>${apartment.status}</td>
                       </tr>
                     `;
-                });
-                tableHTML += `
+          });
+          tableHTML += `
                       </tbody>
                     </table>
                   `;
-                root.innerHTML = tableHTML;
-            } else if (data.houses) {
-                let tableHTML = `
+          root.innerHTML = tableHTML;
+        } else if (data.houses) {
+          let tableHTML = `
                 <h2 class="text-center">Houses</h2>
                         <hr>
                     <table class="table table-bordered table-striped table-hover">
@@ -114,8 +114,8 @@ navLinks.forEach(navLink => {
                       </thead>
                       <tbody>
                   `;
-                data.houses.forEach(house => {
-                    tableHTML += `
+          data.houses.forEach(house => {
+            tableHTML += `
                       <tr>
                         <td>${house.house_id}</td>
                         <td>${house.house_no}</td>
@@ -125,14 +125,14 @@ navLinks.forEach(navLink => {
                         <td>${house.house_status}</td>
                       </tr>
                     `;
-                });
-                tableHTML += `
+          });
+          tableHTML += `
                       </tbody>
                     </table>
                   `;
-                root.innerHTML = tableHTML;
-            } else if (data.tenants) {
-                let tableHTML = `
+          root.innerHTML = tableHTML;
+        } else if (data.tenants) {
+          let tableHTML = `
                 <h2 class="text-center">Tenants</h2>
                         <hr>
                     <table class="table table-bordered table-striped table-hover">
@@ -149,8 +149,8 @@ navLinks.forEach(navLink => {
                       </thead>
                       <tbody>
                   `;
-                data.tenants.forEach(tenant => {
-                    tableHTML += `
+          data.tenants.forEach(tenant => {
+            tableHTML += `
                       <tr>
                         <td>${tenant.id}</td>
                         <td>${tenant.name}</td>
@@ -161,14 +161,14 @@ navLinks.forEach(navLink => {
                         <td>${tenant.user_status}</td>
                       </tr>
                     `;
-                });
-                tableHTML += `
+          });
+          tableHTML += `
                       </tbody>
                     </table>
                   `;
-                root.innerHTML = tableHTML;
-            } else if (data.caretakers) {
-                let tableHTML = `
+          root.innerHTML = tableHTML;
+        } else if (data.caretakers) {
+          let tableHTML = `
                 <h2 class="text-center">Caretakers</h2>
                         <hr>
                     <table class="table table-bordered table-striped table-hover">
@@ -183,8 +183,8 @@ navLinks.forEach(navLink => {
                       </thead>
                       <tbody>
                   `;
-                data.caretakers.forEach(caretaker => {
-                    tableHTML += `
+          data.caretakers.forEach(caretaker => {
+            tableHTML += `
                       <tr>
                         <td>${caretaker.id}</td>
                         <td>${caretaker.name}</td>
@@ -193,49 +193,45 @@ navLinks.forEach(navLink => {
                         <td>${caretaker.user_status}</td>
                       </tr>
                     `;
-                });
-                tableHTML += `
+          });
+          tableHTML += `
                       </tbody>
                     </table>
                   `;
-                root.innerHTML = tableHTML;
-            } else if (data.content) {
-                root.innerHTML = data.content;
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-        });
-    });
+          root.innerHTML = tableHTML;
+        } else if (data.content) {
+          root.innerHTML = data.content;
+        }
+      })
+      .catch(error => {
+        console.error("Fetch error:", error);
+      });
+  });
 });
 
 // add data to the database
 // Utility function to send form data to the endpoint
 function submitFormData(formData, action, callback) {
   formData.append("action", action);
-  fetch(SUBMIT_ENDPOINT, {
+  fetch(originalLocaton + endPoint + target, {
     method: "POST",
     body: formData
   })
-  .then(res => res.json())
-  .then(callback)
-  .catch(err => {
-    console.error("Submission error:", err);
-    alert("An error occurred. Please try again.");
-  });
+    .then(res => res.json())
+    .then(callback)
+    .catch(err => {
+      console.error("Submission error:", err);
+      alert("An error occurred. Please try again.");
+    });
 }
 
 // Water Bill Form
 const waterBillForm = document.getElementById("waterBillForm");
 if (waterBillForm) {
-  waterBillForm.addEventListener("submit", function(e) {
+  waterBillForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("apartment_id", document.getElementById("waterBillApartment").value);
-    formData.append("amount", document.getElementById("waterBillAmount").value);
-    formData.append("billing_period", document.getElementById("waterBillPeriod").value);
-    formData.append("due_date", document.getElementById("waterBillDueDate").value);
-    submitFormData(formData, "add_water_bill", function(response) {
+    submitFormData(formData, "add_water_bill", function (response) {
       if (response.status === "success") {
         alert("Water bill added successfully!");
         waterBillForm.reset();
@@ -250,14 +246,11 @@ if (waterBillForm) {
 // Caretaker Form
 const caretakerForm = document.getElementById("caretakerForm");
 if (caretakerForm) {
-  caretakerForm.addEventListener("submit", function(e) {
+  caretakerForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", document.getElementById("caretakerName").value);
-    formData.append("phone", document.getElementById("caretakerPhone").value);
-    formData.append("id_number", document.getElementById("caretakerIdNumber").value);
-    formData.append("apartment_id", document.getElementById("caretakerApartment").value);
-    submitFormData(formData, "add_caretaker", function(response) {
+    submitFormData(formData, "add_caretaker", function (response) {
+      console.log(response);      
       if (response.status === "success") {
         alert("Caretaker added successfully!");
         caretakerForm.reset();
@@ -272,16 +265,10 @@ if (caretakerForm) {
 // Tenant Form
 const tenantForm = document.getElementById("tenantForm");
 if (tenantForm) {
-  tenantForm.addEventListener("submit", function(e) {
+  tenantForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", document.getElementById("tenantName").value);
-    formData.append("phone", document.getElementById("tenantPhone").value);
-    formData.append("email", document.getElementById("tenantEmail").value);
-    formData.append("id_number", document.getElementById("tenantIdNumber").value);
-    formData.append("house_id", document.getElementById("tenantHouse").value);
-    formData.append("move_in_date", document.getElementById("moveInDate").value);
-    submitFormData(formData, "add_tenant", function(response) {
+    submitFormData(formData, "add_tenant", function (response) {
       if (response.status === "success") {
         alert("Tenant added successfully!");
         tenantForm.reset();
@@ -296,14 +283,10 @@ if (tenantForm) {
 // House Form
 const houseForm = document.getElementById("houseForm");
 if (houseForm) {
-  houseForm.addEventListener("submit", function(e) {
+  houseForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("house_no", document.getElementById("houseNumber").value);
-    formData.append("apartment_id", document.getElementById("houseApartment").value);
-    formData.append("house_type", document.getElementById("houseType").value);
-    formData.append("rent_amount", document.getElementById("monthlyRent").value);
-    submitFormData(formData, "add_house", function(response) {
+    submitFormData(formData, "add_house", function (response) {
       if (response.status === "success") {
         alert("House added successfully!");
         houseForm.reset();
@@ -318,20 +301,16 @@ if (houseForm) {
 // Apartment Form
 const apartmentForm = document.getElementById("apartmentForm");
 if (apartmentForm) {
-  apartmentForm.addEventListener("submit", function(e) {
+  apartmentForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("apartment_name", document.getElementById("apartmentName").value);
-    formData.append("location", document.getElementById("apartmentLocation").value);
-    formData.append("total_units", document.getElementById("totalUnits").value);
-    formData.append("caretaker_id", document.getElementById("apartmentCaretaker").value);
-    submitFormData(formData, "add_apartment", function(response) {
+    submitFormData(formData, "add_apartment", function (response) {
       if (response.status === "success") {
         alert("Apartment added successfully!");
         apartmentForm.reset();
         bootstrap.Modal.getOrCreateInstance(document.getElementById("addApartmentModal")).hide();
       } else {
-        alert(response.message || "Failed to add apartment.");
+        // alert(response.message || "Failed to add apartment.");
       }
     });
   });
